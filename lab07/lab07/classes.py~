@@ -302,10 +302,10 @@ class InstructorCard(Card):
         self.defense -= 1000
         if self.attack >= 0 or self.defense >= 0:
             re_add = True
+        player.hand.append(self.copy())
 
         if re_add:
             print(f"{self.name} returns to my hand!")
-            player.hand.append(self.copy())
 
     def copy(self):
         return InstructorCard(self.name, self.attack, self.defense)

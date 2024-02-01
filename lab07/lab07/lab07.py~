@@ -75,13 +75,11 @@ class FreeChecking(Account):
     "*** YOUR CODE HERE ***"
     def withdraw(self, amount):
         if self.free_withdrawals > 0:
-            ans = super().withdraw(amount)
-            if type(ans) is int:
-                self.free_withdrawals -= 1
-            return ans
+            self.free_withdrawals -= 1
+            return super().withdraw(amount)
+            
         else:
-            ans = super().withdraw(amount + self.withdraw_fee)
-            return ans
+            return super().withdraw(amount + self.withdraw_fee)
 
 
 
