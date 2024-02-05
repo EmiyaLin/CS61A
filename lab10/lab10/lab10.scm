@@ -6,11 +6,21 @@
 	)
  ) 
 
-(define (make-adder num) 'YOUR-CODE-HERE)
+(define (make-adder num) 'YOUR-CODE-HERE
+  (lambda (inc) (+ num inc)))
 
-(define (composed f g) 'YOUR-CODE-HERE)
+(define (composed f g) 'YOUR-CODE-HERE
+  (lambda (x) (f (g x)))
+  )
 
-(define (repeat f n) 'YOUR-CODE-HERE)
+(define (repeat f n) 'YOUR-CODE-HERE
+  (lambda (x)
+   (define (helper x count)
+     (if (= count 0)
+     x
+     (helper (f x) (- count 1))))
+   (helper x n))
+  )
 
 (define (max a b)
   (if (> a b)
@@ -22,4 +32,8 @@
       b
       a))
 
-(define (gcd a b) 'YOUR-CODE-HERE)
+(define (gcd a b) 'YOUR-CODE-HERE
+  (if (zero? b)
+    a
+    (gcd b (modulo a b))))
+
