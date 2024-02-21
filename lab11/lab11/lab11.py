@@ -23,12 +23,12 @@ def calc_eval(exp):
         else: # Call expressions
             return calc_apply(calc_eval(operator), operands.map(calc_eval)) # UPDATE THIS FOR Q2
     elif exp in OPERATORS:   # Looking up procedures
-        print('DEBUG', OPERATORS[exp])
         return OPERATORS[exp]
     elif isinstance(exp, int) or isinstance(exp, bool):   # Numbers and booleans
         return exp
-    elif _________________: # CHANGE THIS CONDITION FOR Q4
-        return _________________ # UPDATE THIS FOR Q4
+    elif exp in bindings: # CHANGE THIS CONDITION FOR Q4
+        print('DEBUG', '########')
+        return calc_eval(bindings[exp]) # UPDATE THIS FOR Q4
 
 def calc_apply(op, args):
     return op(args)
@@ -85,6 +85,18 @@ def eval_and(expressions):
     True
     """
     # BEGIN SOLUTION Q3
+    if expressions is nil:
+        return True
+    first, rest = expressions.first, expressions.rest
+    if first == "and" and rest is nil:
+        return True
+    elif rest is nil:
+        return first
+    elif first is False:
+        print('DEBUG', first)
+        return False
+    else:
+        return eval_and(rest.map(calc_eval))
 
 bindings = {}
 
@@ -104,6 +116,14 @@ def eval_define(expressions):
     2
     """
     # BEGIN SOLUTION Q4
+    symbol, rest = expressions.first, expressions.rest
+    if not rest.first in bindings:
+        bindings[symbol] = rest.first
+    else:
+        bindings[symbol] = bindings[rest.first]
+    
+    print('DEBUG', bindings[symbol])
+    return symbol
 
 OPERATORS = { "//": floor_div, "+": addition, "-": subtraction, "*": multiplication, "/": division }
 
