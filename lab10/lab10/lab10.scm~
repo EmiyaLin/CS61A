@@ -35,5 +35,5 @@
 (define (gcd a b) 'YOUR-CODE-HERE
   (if (zero? b)
     a
-    (gcd b (reminder a b))))
+    (gcd b (modulo a b))))
 

@@ -113,7 +113,7 @@ def yield_paths(t, value):
     [[0, 2], [0, 2, 1, 2]]
     """
     "*** YOUR CODE HERE ***"
-    if label(t) == value and is_leaf(t):
+    if label(t) == value:
         yield [label(t)]
     
     for b in branches(t):

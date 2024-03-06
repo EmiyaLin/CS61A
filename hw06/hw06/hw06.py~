@@ -169,10 +169,10 @@ def two_list(vals, counts):
     for val, count in zip(vals, counts):
         for i in range(count):
             new_node = Link(val)
-            cur.next = new_node
-            cur = cur.next
+            cur.rest = new_node
+            cur = cur.rest
 
-    return dumb.next
+    return dumb.rest
 
 
 class Link:

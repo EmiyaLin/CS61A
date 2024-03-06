@@ -64,3 +64,34 @@ def print_tree(t, indent=0):
     print('-' * indent + str(label(t)))
     for b in branches(t):
         print_tree(b, indent + 1)
+
+def height(t):
+    """Return the height of a tree.
+    >>> t = tree(3, [tree(5, [tree(1)]), tree(2)])
+    >>> height(t)
+    2
+    >>> t = tree(3, [tree(1), tree(2, [tree(5, [tree(6)]), tree(1)])])
+    >>> height(t)
+    3
+    """
+    if is_leaf(t):
+        return 0
+    else:
+        ans = 0
+        for b in branches(t):
+            ans = max(ans, 1 + height(b))
+        return ans
+
+def find_path(t, x):
+    """
+    >>> t = tree(2, [tree(7, [tree(3), tree(6, [tree(5), tree(11)])] ), tree(15)])
+    >>> find_path(t, 5)
+    [2, 7, 6, 5]
+    >>> find_path(t, 10)  # returns None
+    """
+    if x == label(t) and is_leaf(t):
+        return [label(t)]
+    for b in branches(t):
+        path = [label(t)] 
+        if find_path(b, x):
+            return path + find_path(b, x)
